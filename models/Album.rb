@@ -22,15 +22,9 @@ class Album
     SqlRunner.run(sql)
   end
 
-  def update_name(name)
-    sql = "UPDATE albums SET name = $1 WHERE id = $2"
-    values = [name, @id]
-    SqlRunner.run(sql, values)
-  end
-
-  def update_genre(genre)
-    sql = "UPDATE albums SET genre = $1 WHERE id = $2"
-    values = [genre, @id]
+  def update()
+    sql = "UPDATE albums SET (name, genre, artist_id) = ($1, $2, $3) WHERE id = $4"
+    values = [@name, @genre, @artist_id, @id]
     SqlRunner.run(sql, values)
   end
 
